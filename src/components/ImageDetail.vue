@@ -20,7 +20,7 @@
       </button>
 
       <div class="img-container">
-        <img :src="imgMeta.src" />
+        <img :src="getAssetsImages(imgMeta.src)" />
       </div>
     </div>
     <Transition :enter-active-class="metaEnterActiveClass"
@@ -28,8 +28,13 @@
       <div class="meta" v-if="!folded">
         <h1>{{ imgMeta.title || '无题' }}</h1>
         <div class="time-location">
-          <span class=""><i class="fas fa-map-marker-alt"></i>{{ imgMeta.location }}</span>
-          <span><i class="fas fa-clock"></i>{{ imgMeta.year }}</span>
+          <span>
+            <img style="width: 23px;height: 23px;vertical-align: -6px" :src="getAssetsImages('../assets/icon/cp1.png')" alt="">
+            {{ imgMeta.location }}
+          </span>
+          <span>
+          <img style="width: 18px;height: 18px;vertical-align: -3px" :src="getAssetsImages('../assets/icon/shop1.png')" alt="">
+            {{ imgMeta.year }}</span>
         </div>
         <div class="description">
           {{ imgMeta.description || '无描述 :/' }}
@@ -63,7 +68,9 @@ const emits = defineEmits(['lastImage', 'nextImage', 'update:modelValue']);
 const { width: windowWidth } = useWindowSize();
 const metaEnterActiveClass = ref('');
 const metaLeaveActiveClass = ref('');
-
+const getAssetsImages = (name) => {
+  return new URL(name, import.meta.url).href
+}
 watch(() => windowWidth.value, (val) => {
   if (val > 900) {
     metaEnterActiveClass.value = 'animate__animated animate__slideInRight';

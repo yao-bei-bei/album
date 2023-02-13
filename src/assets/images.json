@@ -70,7 +70,7 @@
         }
     },
     {
-        "src": "https://images.tkzt.cn/fine-weather/14.jpg",
+        "src": "../assets/login/login.png",
         "title": "青天",
         "location": "宿迁",
         "year": "2019",

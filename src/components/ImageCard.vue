@@ -3,7 +3,7 @@
     <Transition mode="out-in">
       <Suspense>
         <template #default>
-          <ImageAsync :src="src" @mouseenter="mask = true" />
+          <ImageAsync :src="getAssetsImages(src)" @mouseenter="mask = true" />
         </template>
         <template #fallback>
           <canvas class="skeleton" ref="skeletonRef" width="32" height="32"></canvas>
@@ -15,11 +15,11 @@
           <h3>{{ title }}</h3>
           <p>
             <span v-if="location">
-              <i class="fas fa-map-marker-alt"></i>
+            <img style="width: 23px;height: 23px;vertical-align: -6px" :src="getAssetsImages('../assets/icon/cp1.png')" alt="">
               {{ location }}
             </span>
             <span v-if="year">
-              <i class="fas fa-clock"></i>
+                 <img style="width: 18px;height: 18px;vertical-align: -3px" :src="getAssetsImages('../assets/icon/shop1.png')" alt="">
               {{ year }}
             </span>
           </p>
@@ -48,19 +48,28 @@ const props = defineProps({
     size: Array,
   },
 });
+// const img = new Image();
+// img.src = unref(props.src);
+// await new Promise((resolve) => {
+//   img.onload = () => {
+//     resolve();
+//   };
+// });
 const skeletonRef = ref(null);
 const mask = ref(false);
-
+const getAssetsImages = (name) => {
+  return new URL(name, import.meta.url).href
+}
 onMounted(() => {
   const originSize = props.blurHash.size;
   skeletonRef.value.height = Math.floor((originSize[1] / originSize[0]) * 32);
-
   const pixels = decode(props.blurHash.encoded, 32, 32);
   const ctx = skeletonRef.value.getContext('2d');
   const imageData = ctx.createImageData(32, 32);
   imageData.data.set(pixels);
   ctx.putImageData(imageData, 0, 0);
 });
+
 </script>
 
 <style scoped>

@@ -4,11 +4,10 @@
 
 <script setup>
 import { unref } from 'vue';
-
+import { useIntersectionObserver } from '@vueuse/core'
 const props = defineProps({
   src: String,
 });
-
 // using another `img` element instead of directly fetching the `src`
 // is in order to make sure only one request will be sent.
 const img = new Image();

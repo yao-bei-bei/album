@@ -5,14 +5,19 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/meng/",
     "preview": "vite preview"
+  },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
   },
   "dependencies": {
     "@vueuse/core": "^9.6.0",
     "animate.css": "^4.1.1",
     "blurhash": "^2.0.4",
-    "vue": "^3.2.45"
+    "vite-plugin-imagemin": "^0.6.1",
+    "vue": "^3.2.45",
+    "vue3-lazy": "^1.0.0-alpha.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

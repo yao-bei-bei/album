@@ -2,34 +2,22 @@
   <main>
     <article>
       <div class="preface">
-        <p>
-          由于有若干个能拍照的设备，再加上时间会公平地杀死一切，我每年都会拍出几张回看时<strong>感慨万千</strong>的照片。
-        </p>
-        <p>
-          但由于时间与地域的关系，这些照片往往要么丢失，要么被随意塞在网盘的某处。
-          于是，现在 <em class="caption">(2022-11-28)</em> 我决心花一些精力把它们维护起来。
-          然而，正如前面所言，原图已不易寻觅，目前所得的一些图片大多来自微信朋友圈或微博，很遗憾图片质量已损失太多。
-        </p>
-        <p>而这些图片拍时多是好天气，所以干脆统称这些照片为<strong>「一些晴朗的日子」</strong>。</p>
-        <p>
-          图片目前采用
-          <strong>
-            Github + <a target="_blank" class="link" href="https://vercel.com/">Vercel</a>
-          </strong>
-          来托管，感谢这个伟大的时代。
-        </p>
+        <img src="../assets/login/login.png" alt="">
+        <img src="../assets/login/wx1.jpg" alt="">
+        <img src="../assets/login/wx2.jpg" alt="">
       </div>
-      <ImageCard class="cell" v-for="img, index in images" :key="index" v-bind="img"
+      <ImageCard class="cell" v-for="(img, index) in images" :key="index" v-bind="img"
         @click="openDetail(index)" />
+
     </article>
-    <footer class="caption">
-      &copy;
-      <small>2022{{ 2022 === new Date().getFullYear() ? '' : ' - Present' }}&nbsp;Allen Tao</small>
-      <span class="divider">-</span>
-      <a href="https://github.com/boring-plans/fine-weather-gallery" class="link" target="_blank">
-        <i class="fa fa-github"></i>
-      </a>
-    </footer>
+<!--    <footer class="caption">-->
+<!--      &copy;-->
+<!--      <small>2022{{ 2022 === new Date().getFullYear() ? '' : ' - Present' }}&nbsp;Allen Tao</small>-->
+<!--      <span class="divider">-</span>-->
+<!--      <a href="https://github.com/boring-plans/fine-weather-gallery" class="link" target="_blank">-->
+<!--        <i class="fa fa-github"></i>-->
+<!--      </a>-->
+<!--    </footer>-->
     <ImageDetail v-model="imageDetailModel" v-bind="imageDetails"
       @lastImage="openDetail(imageDetails.current - 1)"
       @nextImage="openDetail(imageDetails.current + 1)" />
@@ -41,10 +29,10 @@ import {
   nextTick, onMounted, reactive, ref, watchEffect,
 } from 'vue';
 import { useEventListener } from '@vueuse/core';
-import imagesJson from '@/assets/images.json';
+// import imagesJson from '@/assets/images.json';
 import ImageCard from './ImageCard.vue';
 import ImageDetail from './ImageDetail.vue';
-
+import imagesJson from '@/assets/data.js';
 const images = ref(imagesJson);
 const imageDetailModel = ref(false);
 const imageDetails = reactive({
@@ -134,20 +122,21 @@ article {
   color: #a78bfa;
 }
 
-.preface {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-wrap: wrap;
-  height: fit-content;
-  padding: 12px 24px;
-  margin-bottom: 24px;
-  border-radius: 8px;
-  break-inside: avoid;
-  background-color: white;
-  white-space: pre-line;
-  position: relative;
-  color: rgba(0, 0, 0, .78);
+.preface img{
+  width: 100%;
+  height: 100%;
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: start;*/
+  /*flex-wrap: wrap;*/
+  /*height: fit-content;*/
+  /*margin-bottom: 24px;*/
+  /*border-radius: 8px;*/
+  /*break-inside: avoid;*/
+  /*background-color: white;*/
+  /*white-space: pre-line;*/
+  /*position: relative;*/
+  /*color: rgba(0, 0, 0, .78);*/
 }
 
 .preface h1 {
