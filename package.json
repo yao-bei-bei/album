@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/meng/",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "resolutions": {
